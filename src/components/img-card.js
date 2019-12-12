@@ -1,4 +1,8 @@
 import React from "react";
+import {
+    Card, CardImg, CardBody,
+    CardTitle, CardSubtitle, Button
+  } from 'reactstrap';
 
 class ImageCard extends React.Component {
 
@@ -9,20 +13,26 @@ class ImageCard extends React.Component {
             name: props.name,
             date: props.date,
             url: props.url,
-            desc: props.desc
+            desc: props.desc,
+            redirect: false
 
         };
     }
+
+    redirect() { window.location = '/learn/' + this.state.date; }
 
     render() {
 
         return (<>
             <div>
-                <div>
-                    <h1>{this.state.name}</h1>
-                    <h2>{this.state.date}</h2>
-                </div>
-                <img src={this.state.url} alt='NASA' />
+                <Card style={{maxWidth: '250px'}}>
+                    <CardBody>
+                        <CardTitle>{this.state.name}</CardTitle>
+                        <CardSubtitle>{this.state.date}</CardSubtitle>
+                        <Button onClick={() => this.redirect()}>Learn more</Button>
+                    </CardBody>
+                    <CardImg top width="100%" src={this.state.url} style={{borderRadius: '0px 0px 5px 5px'}} alt="NASA APOD" />
+                </Card>
             </div>
         </>);
 
